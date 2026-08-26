@@ -164,37 +164,8 @@ body.hov #cursor-ring{width:52px;height:52px;border-color:rgba(123,47,190,.4);op
 .nav-links a.active{color:var(--cyan)}
 .nav-links a.active::after{background:var(--cyan)}
 
-/* Resume pill in nav */
-.nav-resume-pill{
-  display:inline-flex;align-items:center;gap:.4rem;
-  font-family:var(--font-mono);font-size:.72rem;font-weight:500;letter-spacing:.06em;
-  padding:.38rem 1rem;border-radius:100px;
-  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);
-  color:var(--cyan);cursor:pointer;transition:background var(--t),box-shadow var(--t);
-  text-decoration:none;
-}
-.nav-resume-pill:hover{background:rgba(0,212,255,.18);box-shadow:var(--glow)}
-.nav-resume-pill .pill-icon{font-size:.85rem}
-
 #nav-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
 #nav-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:var(--t)}
-
-/* ══════════════════════════════════════════════
-   FLOATING RESUME BADGE (always visible)
-══════════════════════════════════════════════ */
-#resume-fab{
-  position:fixed;bottom:5.5rem;right:2rem;z-index:900;
-  display:flex;align-items:center;gap:.5rem;
-  background:linear-gradient(135deg,var(--violet),var(--cyan));
-  color:#fff;font-family:var(--font-display);font-size:.8rem;font-weight:700;
-  padding:.65rem 1.2rem;border-radius:100px;
-  box-shadow:0 8px 32px rgba(0,212,255,.35);
-  cursor:pointer;border:none;text-decoration:none;
-  transition:transform var(--t),box-shadow var(--t);
-  animation:fab-pulse 3s ease-in-out infinite;
-}
-#resume-fab:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 44px rgba(0,212,255,.55);animation:none}
-@keyframes fab-pulse{0%,100%{box-shadow:0 8px 32px rgba(0,212,255,.35)}50%{box-shadow:0 8px 44px rgba(123,47,190,.5)}}
 
 /* ══════════════════════════════════════════════
    LAYOUT
@@ -601,16 +572,6 @@ section{position:relative;z-index:1;padding:7rem 0 5rem}
 .info-label{font-size:.72rem;color:var(--muted);font-family:var(--font-mono);display:block;margin-bottom:2px}
 .info-val{font-size:.88rem;color:var(--text);font-weight:500}
 
-/* Resume download card inside contact */
-.resume-download-card{
-  margin-top:1.5rem;
-  background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(123,47,190,.08));
-  border:1px solid rgba(0,212,255,.2);border-radius:var(--radius);
-  padding:1.5rem;display:flex;flex-direction:column;gap:1rem;align-items:flex-start;
-}
-.rdc-title{font-family:var(--font-display);font-size:.95rem;font-weight:700}
-.rdc-sub{font-size:.8rem;color:var(--muted);line-height:1.6}
-
 /* ══════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════ */
@@ -684,12 +645,6 @@ kbd{
 .proj-metric::before{content:'▸';flex-shrink:0;opacity:.7}
 
 /* ══════════════════════════════════════════════
-   APPROACH / PRACTICE
-══════════════════════════════════════════════ */
-.practice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
-.practice-desc{font-size:.845rem;color:var(--muted);line-height:1.75}
-
-/* ══════════════════════════════════════════════
    NOSCRIPT / CRAWLER FALLBACK
 ══════════════════════════════════════════════ */
 .noscript-fallback{max-width:1200px;margin:0 auto;padding:2rem;color:var(--muted);font-size:.85rem;line-height:1.9}
@@ -709,7 +664,6 @@ kbd{
   }
   .nav-links.open{right:0}
   .nav-links a{font-size:1rem}
-  .nav-resume-pill{display:none}
   body{cursor:auto}
   #cursor,#cursor-ring{display:none}
   .hero-grid{grid-template-columns:1fr;gap:2.5rem;text-align:center}
@@ -727,7 +681,6 @@ kbd{
   .tl-dot-col,.tl-empty{display:none}
   .tl-item:nth-child(odd) .tl-techs{justify-content:flex-start}
   .contact-grid{grid-template-columns:1fr}
-  #resume-fab{bottom:5rem}
   .now-building{justify-content:center}
 }
 @media(max-width:480px){
@@ -757,11 +710,6 @@ kbd{
   <div class="ld-label">Initializing Portfolio</div>
 </div>
 
-<!-- FLOATING RESUME BADGE -->
-<a id="resume-fab" href="#" download style="display:none" aria-label="Download resume">
-  📄 Download Resume
-</a>
-
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-brand">
@@ -773,13 +721,9 @@ kbd{
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#approach">Approach</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="nav-resume-pill" id="nav-resume" href="#" download style="display:none">
-    <span class="pill-icon">📄</span> Resume
-  </a>
   <div id="nav-toggle" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </div>
@@ -871,18 +815,6 @@ kbd{
 
 <div class="seg"></div>
 
-<!-- ══ APPROACH / AI ENGINEERING PRACTICE ══ -->
-<section id="approach">
-  <div class="container">
-    <div class="section-label">How I Build</div>
-    <h2 class="section-title fade-up">AI Engineering <span class="gradient-text">Practice</span></h2>
-    <p class="section-sub fade-up">Anyone can wire an LLM to a vector store. These are the decisions that separate a demo from a system you can put in front of users.</p>
-    <div class="practice-grid stagger-parent" id="practice-grid"></div>
-  </div>
-</section>
-
-<div class="seg"></div>
-
 <!-- ══ CERTIFICATIONS ══ -->
 <section id="certifications" class="alt-bg">
   <div class="container">
@@ -918,11 +850,6 @@ kbd{
         <h3>Open to Opportunities</h3>
         <p>Actively seeking <strong>Generative AI Engineer</strong>, <strong>Agentic AI Engineer</strong>, <strong>AI Engineer</strong> and <strong>LLM Application Engineer</strong> roles — building RAG systems, multi-agent workflows and LLM-backed services. Open to full-time and contract. Fastest reply is email.</p>
         <div class="contact-links" id="contact-links"></div>
-        <div class="resume-download-card" id="resume-card" style="display:none">
-          <div class="rdc-title">📄 Resume / CV</div>
-          <div class="rdc-sub">Download my latest resume with full project details, tech stack, and experience overview.</div>
-          <a class="btn btn-green" id="resume-download-btn" href="#" download>⬇ Download Resume</a>
-        </div>
       </div>
       <div class="fade-right">
         <div class="contact-info-wrap">
@@ -950,7 +877,7 @@ kbd{
     <div class="footer-name" id="footer-name"></div>
     <div class="footer-socials" id="footer-socials"></div>
     <div class="footer-copy" id="footer-copy"></div>
-    <div class="footer-shortcuts">Press <kbd>R</kbd> to download resume &nbsp;·&nbsp; <kbd>↑</kbd> to top</div>
+    <div class="footer-shortcuts">Press <kbd>Ctrl</kbd>+<kbd>↑</kbd> to jump to top</div>
   </div>
 </footer>
 
@@ -963,11 +890,9 @@ kbd{
 const portfolioData = {
 
   /* ─────────────────────────────────────────────────────────────
-     ⚠️ BEFORE YOU DEPLOY — three things that are currently broken:
-     1. resume  → commit the PDF to your repo at assets/. A Google
-        Drive "/view?usp=sharing" link will NEVER download or render.
-     2. photo   → same. Commit the image; Drive share links 404 in <img>.
-     3. Every metric below marked  // ⚠️ VERIFY  must be a number you
+     ⚠️ BEFORE YOU DEPLOY — things that are currently broken:
+     1. photo   → commit the image to assets/; Drive share links 404 in <img>.
+     2. Every metric below marked  // ⚠️ VERIFY  must be a number you
         actually measured. Recruiters don't check. Interviewers do.
      ───────────────────────────────────────────────────────────── */
 
@@ -978,7 +903,6 @@ const portfolioData = {
     phone: "9553827858",
     github: "https://github.com/PavanSusarla",
     linkedin: "https://www.linkedin.com/in/pavan-susarla-7770b42a6/",
-    resume: "C:\Users\DELL\Downloads\portfolio\assets\Pavan_Genai_Resume.pdf",  // ⚠️ commit this file
     photo:  "assets/pavan.jpg",                                 // ⚠️ commit this file
     location: "Andhra Pradesh, India",
     bio: "I build Generative AI and agentic systems that survive outside a notebook — production RAG pipelines with page-level citations, multi-agent workflows that plan and call tools, and fine-tuned open models served behind FastAPI. Every system ships with an evaluation harness, not just a happy-path demo."
@@ -1204,15 +1128,6 @@ function initPortfolio(){
   document.getElementById('nav-name').textContent = p.name;
   document.getElementById('nav-pip').textContent = p.name.split(' ').map(w=>w[0]).join('');
 
-  // Resume links
-  if(p.resume){
-    ['nav-resume','resume-fab','resume-download-btn'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){ el.href=p.resume; el.style.display=''; }
-    });
-    document.getElementById('resume-card').style.display='';
-  }
-
   // ── Profile photo ──
   const photoEl = document.getElementById('avatar-photo');
   if(p.photo){
@@ -1237,7 +1152,6 @@ function initPortfolio(){
   const ctas=document.getElementById('hero-ctas');
   if(p.github)   ctas.innerHTML+=`<a href="${p.github}" target="_blank" rel="noopener" class="btn btn-primary">GitHub ↗</a>`;
   if(p.linkedin) ctas.innerHTML+=`<a href="${p.linkedin}" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>`;
-  if(p.resume)   ctas.innerHTML+=`<a href="${p.resume}" download class="btn btn-green">⬇ Resume</a>`;
 
   // Currently building strip
   const nb=document.getElementById('now-building');
@@ -1336,16 +1250,6 @@ function initPortfolio(){
       </div>`;
     pg.appendChild(card);
   });
-
-  // ── Approach / practice ──
-  const prg=document.getElementById('practice-grid');
-  if(prg && d.practice){
-    prg.innerHTML = d.practice.map(x=>`
-      <div class="skill-category stagger-child">
-        <div class="skill-cat-title">${x.title}</div>
-        <p class="practice-desc">${x.body}</p>
-      </div>`).join('');
-  }
 
   // ── Certifications ──
   const cg=document.getElementById('certs-grid');
@@ -1638,13 +1542,6 @@ document.addEventListener('click',e=>{
    KEYBOARD SHORTCUTS
 ══════════════════════════════════════════════ */
 document.addEventListener('keydown',e=>{
-  // BUGFIX: typing "r" in the project search box used to trigger a resume download
-  const t=e.target;
-  if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
-  if(e.key==='r'||e.key==='R'){
-    const res=portfolioData.personal.resume;
-    if(res){ const a=document.createElement('a');a.href=res;a.download='';a.click(); }
-  }
   if(e.key==='ArrowUp'&&e.ctrlKey) window.scrollTo({top:0,behavior:'smooth'});
 });
 
